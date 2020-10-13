@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import UserCardList from './UserCardList';
 
 class SearchForm extends Component {
     state = {
@@ -24,12 +25,13 @@ class SearchForm extends Component {
         const userData = await this.loadData();
 
         this.setState({
+            userName: '',
             users: [...this.state.users, userData],
         })
     }
 
     render() {
-        const { userName } = this.state;
+        const { userName, users } = this.state;
         
         return (
             <>
@@ -47,7 +49,7 @@ class SearchForm extends Component {
                         Search
                     </button>
                 </form>
-                <p>{userName}</p>
+                <UserCardList users={users} />
             </>
         )
     }
