@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import 'bulma/css/bulma.css';
-import { Box, Title } from 'bloomer';
+import { Box, Column, Columns, Title } from 'bloomer';
 
 const UserProfile = props => {
     const [repos, setRepos] = useState([]);
@@ -22,27 +22,25 @@ const UserProfile = props => {
 
     return (
         <>
-            <Title isSize={2}>{user.name}</Title>
+            <Title isSize={3}>{user.name}</Title>
             <img src={user.avatar_url} alt="avatar" />
             <p>{user.bio}</p>
             <p>{user.location}</p>
-            <h4>Github Repositories:</h4>
-                <ul>
+            <Title isSize={4}>Github Repositories:</Title>
+            <Columns isCentered>
+                <Column isSize='1/2'>
                     {
                         repos.map((repo) => {
                             return (
-                                <li>
-                                    <Box key={repo.node_id}>
-                                        <a href={repo.html_url} target="_blank">{repo.name}</a>
-                                        <p>{repo.description}</p>
-                                    </Box>
-                                </li>
-                                
+                                <Box key={repo.node_id}>
+                                    <a href={repo.html_url} target="_blank">{repo.name}</a>
+                                    <p>{repo.description}</p>
+                                </Box>
                             )
                         })
                     }
-                </ul>
-            
+                </Column>
+            </Columns>
         </>
     )
 }
