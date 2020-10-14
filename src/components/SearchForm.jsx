@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom';
 import UserCardList from './UserCardList';
+import UserProfile from './UserProfile';
+
+import 'bulma/css/bulma.css';
+import { Box, Button, Title } from 'bloomer';
 
 class SearchForm extends Component {
     state = {
@@ -32,21 +37,27 @@ class SearchForm extends Component {
         
         return (
             <>
-                <h1>Search Github User</h1>
-                <form>
-                    <label>
-                        Search for Username: 
-                        <input 
-                            type="text"
-                            onChange={event => this._handleChange(event.target.value)}
-                            value={userName}
-                        />
-                    </label>
-                    <button type="button" onClick={this._handleSubmit}>
-                        Search
-                    </button>
-                </form>
-                <UserCardList users={users} />
+                <Route exact path="/">
+                    <Title isSize={2}>Search Github User</Title>
+                    <form>
+                        <label>
+                            Search for Username: 
+                            <input 
+                                type="text"
+                                onChange={event => this._handleChange(event.target.value)}
+                                value={userName}
+                            />
+                        </label>
+                        <Button type="button" onClick={this._handleSubmit}>
+                            Search
+                        </Button>
+                    </form>
+                    <UserCardList users={users} />
+                </Route>
+                <Route path={`/user/:userName`}>
+                    <Link to="/">Return to List</Link>
+                    <UserProfile users={users} />
+                </Route>
             </>
         )
     }
