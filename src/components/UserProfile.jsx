@@ -18,7 +18,7 @@ const UserProfile = props => {
             const repos = await response.json();
             setRepos(repos);
         })();
-    }, [setRepos]);
+    }, [setRepos, userName]);
 
     return (
         <>
@@ -35,7 +35,7 @@ const UserProfile = props => {
                                 repos.map((repo) => {
                                     return (
                                         <Box key={repo.node_id}>
-                                            <a href={repo.html_url} target="_blank">{repo.name}</a>
+                                            <a href={repo.html_url} target="_blank" rel="noopener noreferrer">{repo.name}</a>
                                             <p>{repo.description}</p>
                                         </Box>
                                     )

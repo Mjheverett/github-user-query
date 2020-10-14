@@ -4,7 +4,7 @@ import UserCardList from './UserCardList';
 import UserProfile from './UserProfile';
 
 import 'bulma/css/bulma.css';
-import { Box, Button, Column, Columns, Container, Control, Field, Hero, HeroBody, Input, Label, Title } from 'bloomer';
+import { Button, Column, Columns, Container, Control, Field, Hero, HeroBody, Input, Label, Title } from 'bloomer';
 
 class SearchForm extends Component {
     state = {
