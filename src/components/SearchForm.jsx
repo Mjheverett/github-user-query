@@ -7,22 +7,19 @@ class SearchForm extends Component {
         users: [],
     }
 
-    loadData = async () => {
-        const { userName } = this.state;
-        const response = await fetch(`https://api.github.com/users/${userName}`);
-        const data = await response.json();
-        console.log("user data", data);
-        return data;
-    }
-
     _handleChange = (newUserName) => {
         this.setState({
             userName: newUserName,
         });
     };
 
-    _handleSubmit = async () => {
-        const userData = await this.loadData();
+    _handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const { userName } = this.state;
+
+        const response = await fetch(`https://api.github.com/users/${userName}`);
+        const userData = await response.json();
 
         this.setState({
             userName: '',
