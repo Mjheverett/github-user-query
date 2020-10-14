@@ -22,25 +22,31 @@ const UserProfile = props => {
 
     return (
         <>
-            <Title isSize={3}>{user.name}</Title>
-            <img src={user.avatar_url} alt="avatar" />
-            <p>{user.bio}</p>
-            <p>{user.location}</p>
-            <Title isSize={4}>Github Repositories:</Title>
-            <Columns isCentered>
-                <Column isSize='1/2'>
-                    {
-                        repos.map((repo) => {
-                            return (
-                                <Box key={repo.node_id}>
-                                    <a href={repo.html_url} target="_blank">{repo.name}</a>
-                                    <p>{repo.description}</p>
-                                </Box>
-                            )
-                        })
-                    }
-                </Column>
-            </Columns>
+            {!!users.length ? (
+                <>
+                    <Title isSize={3}>{user.name}</Title>
+                    <img src={user.avatar_url} alt="avatar" />
+                    <p>{user.bio}</p>
+                    <p>{user.location}</p>
+                    <Title isSize={4}>Github Repositories:</Title>
+                    <Columns isCentered>
+                        <Column isSize='1/2'>
+                            {
+                                repos.map((repo) => {
+                                    return (
+                                        <Box key={repo.node_id}>
+                                            <a href={repo.html_url} target="_blank">{repo.name}</a>
+                                            <p>{repo.description}</p>
+                                        </Box>
+                                    )
+                                })
+                            }
+                        </Column>
+                    </Columns>
+                </>
+            ) : (
+                <p>Users array is empty</p>
+            )}
         </>
     )
 }
